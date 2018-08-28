@@ -24,7 +24,7 @@ int main() {
 
         switch(wybor) {
         case '1':
-            uzytkownicy2.logowanie(uzytkownicy2.uzytkownicy, uzytkownicy2.getLiczbaUzytkownikow, uzytkownicy2.getZalogowano(), uzytkownicy2.getIDZalogowanego());
+            uzytkownicy2.logowanie(uzytkownicy2.uzytkownicy, uzytkownicy2.getLiczbaUzytkownikow(), uzytkownicy2.getZalogowano(), uzytkownicy2.getIDZalogowanego());
             //odczytZPlikuKsiazka(osoby, liczbaOsob, idZalogowanego);
             while(uzytkownicy2.getZalogowano()) {
                 system("cls");
@@ -64,7 +64,7 @@ int main() {
                     edytujOsobe(osoby, liczbaOsob);
                     break;*/
                 case '7':
-                    uzytkownicy2.zmienHaslo(uzytkownicy2.getUzytkownicy(), uzytkownicy2.getIDZalogowanego(), uzytkownicy2.getLiczbaUzytkownikow);
+                    uzytkownicy2.zmienHaslo(uzytkownicy2.getUzytkownicy(), uzytkownicy2.getIDZalogowanego(), uzytkownicy2.getLiczbaUzytkownikow());
                     break;
                 case '0':
                     uzytkownicy2.wylogowanie(uzytkownicy2.getZalogowano());
@@ -78,7 +78,7 @@ int main() {
             }
             break;
         case '2':
-            uzytkownicy2.wprowadzDaneUzytkownika(uzytkownicy2.getUzytkownicy(), uzytkownicy2.getLiczbaUzytkownikow);
+            uzytkownicy2.wprowadzDaneUzytkownika(uzytkownicy2.getUzytkownicy(), uzytkownicy2.getLiczbaUzytkownikow());
             getch();
             break;
         case '0':

@@ -17,24 +17,24 @@ void Uzytkownicy::setLiczbaUzytkownikow(int nowaLiczbaUzytkownikow){
     liczbaUzytkownikow=nowaLiczbaUzytkownikow;
 }
 
-int getIDZalogowanego(){
+int Uzytkownicy::getIDZalogowanego(){
     return idZalogowanego;
 }
-void setIDZalogowanego(int noweIDZalogowanego){
+void Uzytkownicy::setIDZalogowanego(int noweIDZalogowanego){
     idZalogowanego=noweIDZalogowanego;
 }
 
-bool getZalogowano(){
+bool Uzytkownicy::getZalogowano(){
     return zalogowano;
 }
-void setZalogowano(int noweZalogowano){
+void Uzytkownicy::setZalogowano(int noweZalogowano){
     zalogowano=noweZalogowano;
 }
 
-vector<Uzytkownik> getUzytkownicy(){
+vector<Uzytkownik> Uzytkownicy::getUzytkownicy(){
     return uzytkownicy;
 }
-void setUzytkownicy(vector<Uzytkownik> nowiUzytkownicy){
+void Uzytkownicy::setUzytkownicy(vector<Uzytkownik> nowiUzytkownicy){
     uzytkownicy=nowiUzytkownicy;
 }
 
