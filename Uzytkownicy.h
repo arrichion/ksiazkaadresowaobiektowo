@@ -4,15 +4,18 @@
 
 using namespace std;
 
-class Uzytkownicy{
-    private:
-    int liczbaUzytkownikow=0, idZalogowanego=0;
-    bool zalogowano = false;
+class PlikUzytkownicy;
 
-    public:
+class Uzytkownicy {
+private:
+    int liczbaUzytkownikow, idZalogowanego;
+    bool zalogowano;
     vector<Uzytkownik> uzytkownicy;
 
-    public:
+public:
+    Uzytkownicy();
+    ~Uzytkownicy();
+
     int getLiczbaUzytkownikow();
     void setLiczbaUzytkownikow(int nowaLiczbaUzytkownikow);
 
@@ -25,8 +28,12 @@ class Uzytkownicy{
     vector<Uzytkownik> getUzytkownicy();
     void setUzytkownicy(vector<Uzytkownik> nowiUzytkownicy);
 
-    void wprowadzDaneUzytkownika(vector<Uzytkownik> &uzytkownicy, int &liczbaUzytkownikow);
-    void zmienHaslo(vector<Uzytkownik> &uzytkownicy, int idZalogowanego, int liczbaUzytkownikow);
-    void logowanie(vector<Uzytkownik> uzytkownicy, int liczbaUzytkownikow, bool &zalogowano, int &idZalogowanego);
-    void wylogowanie(bool &zalogowano);
+    void wprowadzDaneUzytkownika();
+    void zmienHaslo(Uzytkownicy &, PlikUzytkownicy &);
+    void logowanie();
+    void wylogowanie();
+
+    friend class PlikUzytkownicy;
+    friend void odczytZPlikuUzytkownicy(Uzytkownicy &);
+    friend void zapisDoPlikuUzytkownicy(Uzytkownicy &, PlikUzytkownicy &);
 };

@@ -1,6 +1,5 @@
 #include <iostream>
 #include "Uzytkownik.h"
-#include <fstream>
 #include <cstdlib>
 #include <windows.h>
 #include <conio.h>
@@ -8,6 +7,15 @@
 #include <vector>
 
 using namespace std;
+
+Uzytkownik::Uzytkownik(){
+    nazwa="";
+    haslo="";
+    id=0;
+}
+Uzytkownik::~Uzytkownik(){
+
+}
 
 string Uzytkownik::getNazwa(){
     return nazwa;

@@ -1,6 +1,5 @@
 #include <iostream>
-#include "Uzytkownicy.h"
-#include <iostream>
+#include "PlikUzytkownicy.h"
 #include <cstdlib>
 #include <windows.h>
 #include <conio.h>
@@ -11,9 +10,12 @@ using namespace std;
 
 int main() {
     char wybor;
-    Uzytkownicy uzytkownicy2;
+    Uzytkownicy uzytkownicy;
+    PlikUzytkownicy plikUzytkownicy;
 
-    while(!uzytkownicy2.getZalogowano()) {
+    plikUzytkownicy.odczytZPlikuUzytkownicy(uzytkownicy);//(uzytkownicy.getUzytkownicy(), uzytkownicy.getLiczbaUzytkownikow());
+
+    while(!uzytkownicy.getZalogowano()) {
         cout<<"-----KSIAZKA ADRESOWA------"<<endl<<endl;
         cout<<"1. Logowanie."<<endl;
         cout<<"2. Rejestracja."<<endl;
@@ -24,9 +26,9 @@ int main() {
 
         switch(wybor) {
         case '1':
-            uzytkownicy2.logowanie(uzytkownicy2.uzytkownicy, uzytkownicy2.getLiczbaUzytkownikow(), uzytkownicy2.getZalogowano(), uzytkownicy2.getIDZalogowanego());
+            uzytkownicy.logowanie();
             //odczytZPlikuKsiazka(osoby, liczbaOsob, idZalogowanego);
-            while(uzytkownicy2.getZalogowano()) {
+            while(uzytkownicy.getZalogowano()) {
                 system("cls");
                 cout<<"-----KSIAZKA ADRESOWA------"<<endl<<endl;
                 cout<<"1. Wprowadz dane osoby."<<endl;
@@ -64,10 +66,10 @@ int main() {
                     edytujOsobe(osoby, liczbaOsob);
                     break;*/
                 case '7':
-                    uzytkownicy2.zmienHaslo(uzytkownicy2.getUzytkownicy(), uzytkownicy2.getIDZalogowanego(), uzytkownicy2.getLiczbaUzytkownikow());
+                    uzytkownicy.zmienHaslo(uzytkownicy, plikUzytkownicy);
                     break;
                 case '0':
-                    uzytkownicy2.wylogowanie(uzytkownicy2.getZalogowano());
+                    uzytkownicy.wylogowanie();
                     break;
                 default:
                     cout<<"Nie ma takiej opcji.";
@@ -78,7 +80,7 @@ int main() {
             }
             break;
         case '2':
-            uzytkownicy2.wprowadzDaneUzytkownika(uzytkownicy2.getUzytkownicy(), uzytkownicy2.getLiczbaUzytkownikow());
+            uzytkownicy.wprowadzDaneUzytkownika();
             getch();
             break;
         case '0':

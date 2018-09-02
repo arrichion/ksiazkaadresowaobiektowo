@@ -1,13 +1,22 @@
 #include <iostream>
-#include <fstream>
+#include "PlikUzytkownicy.h"
 #include <cstdlib>
 #include <windows.h>
-#include "Uzytkownicy.h"
 #include <conio.h>
 #include <fstream>
 #include <vector>
 
 using namespace std;
+
+Uzytkownicy::Uzytkownicy(){
+    liczbaUzytkownikow=0;
+    idZalogowanego=0;
+    zalogowano = false;
+}
+
+Uzytkownicy::~Uzytkownicy(){
+
+}
 
 int Uzytkownicy::getLiczbaUzytkownikow(){
     return liczbaUzytkownikow;
@@ -38,74 +47,75 @@ void Uzytkownicy::setUzytkownicy(vector<Uzytkownik> nowiUzytkownicy){
     uzytkownicy=nowiUzytkownicy;
 }
 
-void Uzytkownicy::wprowadzDaneUzytkownika(vector<Uzytkownik> &uzytkownicy, int &liczbaUzytkownikow){
+void Uzytkownicy::wprowadzDaneUzytkownika(){
     fstream plik;
     Uzytkownik dodawanyUzytkownik;
+    string ustawianaNazwa, ustawianeHaslo;
     bool powtorzonaNazwa=false;
 
     cin.clear();
     cin.sync();
 
     cout<<"Utworz nazwe: ";
-    getline(cin, dodawanyUzytkownik.nazwa);
+    getline(cin, ustawianaNazwa);
+    dodawanyUzytkownik.setNazwa(ustawianaNazwa);
     for(int i=0; i<liczbaUzytkownikow; ++i) {
-        if(dodawanyUzytkownik.nazwa==uzytkownicy[i].nazwa) {
+        if(dodawanyUzytkownik.getNazwa()==uzytkownicy[i].getNazwa()) {
             powtorzonaNazwa=true;
             cout<<"Podana nazwa uzytkownika jest juz zajeta.";
         }
     }
     if(!powtorzonaNazwa) {
         cout<<"Utworz haslo: ";
-        getline(cin, dodawanyUzytkownik.haslo);
+        getline(cin, ustawianeHaslo);
+        dodawanyUzytkownik.setHaslo(ustawianeHaslo);
         if(liczbaUzytkownikow==0)
-            dodawanyUzytkownik.id=1;
+            dodawanyUzytkownik.setID(1);
         else
-            dodawanyUzytkownik.id=uzytkownicy[liczbaUzytkownikow-1].id+1;
+            dodawanyUzytkownik.setID(uzytkownicy[liczbaUzytkownikow-1].getID()+1);
 
         uzytkownicy.push_back(dodawanyUzytkownik);
         plik.open("uzytkownicy.txt",ios::out | ios::app);
 
-        plik<<uzytkownicy[liczbaUzytkownikow].id<<"|";
-        plik<<uzytkownicy[liczbaUzytkownikow].nazwa<<"|";
-        plik<<uzytkownicy[liczbaUzytkownikow].haslo<<"|"<<endl;
+        plik<<uzytkownicy[liczbaUzytkownikow].getID()<<"|";
+        plik<<uzytkownicy[liczbaUzytkownikow].getNazwa()<<"|";
+        plik<<uzytkownicy[liczbaUzytkownikow].getHaslo()<<"|"<<endl;
 
         plik.close();
 
         ++liczbaUzytkownikow;
-
     }
-
 }
 
-void Uzytkownicy::zmienHaslo(vector<Uzytkownik> &uzytkownicy, int idZalogowanego, int liczbaUzytkownikow){
+void Uzytkownicy::zmienHaslo(Uzytkownicy &users, PlikUzytkownicy &fileUsers){
     string noweHaslo="";
 
     cout<<"Podaj nowe haslo: ";
-    cin>>noweHaslo;
+    getline(cin,noweHaslo);
     for(int i=0; i<liczbaUzytkownikow; ++i)
-        if(uzytkownicy[i].id==idZalogowanego) {
-            uzytkownicy[i].haslo=noweHaslo;
+        if(uzytkownicy[i].getID()==idZalogowanego) {
+            uzytkownicy[i].setHaslo(noweHaslo);
             break;
         }
-    //zapisDoPlikuUzytkownicy(uzytkownicy, liczbaUzytkownikow);
+    fileUsers.zapisDoPlikuUzytkownicy(users);
     cout<<endl<<"Haslo zostalo zmienione";
     Sleep(1000);
 }
 
-void Uzytkownicy::logowanie(vector<Uzytkownik> uzytkownicy, int liczbaUzytkownikow, bool &zalogowano, int &idZalogowanego){
+void Uzytkownicy::logowanie(){
     string nazwa, haslo;
     bool znalezionoUzytkownika=false;
 
     cout<<"Podaj nazwe: ";
-    cin>>nazwa;
+    getline(cin,nazwa);
     cout<<"Podaj haslo: ";
-    cin>>haslo;
+    getline(cin,haslo);
     cout<<endl;
     for(int i=0; i<liczbaUzytkownikow; ++i)
-        if(uzytkownicy[i].nazwa==nazwa) {
+        if(uzytkownicy[i].getNazwa()==nazwa) {
             znalezionoUzytkownika=true;
-            idZalogowanego=uzytkownicy[i].id;
-            if(uzytkownicy[i].haslo==haslo) {
+            idZalogowanego=uzytkownicy[i].getID();
+            if(uzytkownicy[i].getHaslo()==haslo) {
                 zalogowano=true;
                 cout<<"Zalogowano";
             } else
@@ -113,12 +123,12 @@ void Uzytkownicy::logowanie(vector<Uzytkownik> uzytkownicy, int liczbaUzytkownik
             Sleep(1000);
         }
     if(znalezionoUzytkownika==false) {
-        cout<<endl<<"Nie ma takiego uzytkownika.";
+        cout<<"Nie ma takiego uzytkownika.";
         Sleep(1000);
     }
 }
 
-void Uzytkownicy::wylogowanie(bool &zalogowano){
+void Uzytkownicy::wylogowanie(){
     zalogowano=false;
     //osoby.clear();
     //liczbaOsob=0;
