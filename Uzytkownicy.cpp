@@ -1,5 +1,5 @@
 #include <iostream>
-#include "PlikUzytkownicy.h"
+#include "Uzytkownicy.h"
 #include <cstdlib>
 #include <windows.h>
 #include <conio.h>
@@ -12,10 +12,11 @@ Uzytkownicy::Uzytkownicy(){
     liczbaUzytkownikow=0;
     idZalogowanego=0;
     zalogowano = false;
+    plikUzytkownicy.odczytZPlikuUzytkownicy(uzytkownicy, liczbaUzytkownikow);
 }
 
 Uzytkownicy::~Uzytkownicy(){
-
+    uzytkownicy.clear();
 }
 
 int Uzytkownicy::getLiczbaUzytkownikow(){
@@ -87,7 +88,7 @@ void Uzytkownicy::wprowadzDaneUzytkownika(){
     }
 }
 
-void Uzytkownicy::zmienHaslo(Uzytkownicy &users, PlikUzytkownicy &fileUsers){
+void Uzytkownicy::zmienHaslo(){
     string noweHaslo="";
 
     cout<<"Podaj nowe haslo: ";
@@ -97,7 +98,7 @@ void Uzytkownicy::zmienHaslo(Uzytkownicy &users, PlikUzytkownicy &fileUsers){
             uzytkownicy[i].setHaslo(noweHaslo);
             break;
         }
-    fileUsers.zapisDoPlikuUzytkownicy(users);
+    plikUzytkownicy.zapisDoPlikuUzytkownicy(uzytkownicy, liczbaUzytkownikow);
     cout<<endl<<"Haslo zostalo zmienione";
     Sleep(1000);
 }

@@ -1,4 +1,5 @@
 #include <iostream>
+#include "Uzytkownik.h"
 #include "Plik.h"
 #include <vector>
 #include <fstream>
@@ -14,6 +15,6 @@ private:
     Uzytkownik odczytanyUzytkownik;
 
 public:
-        void odczytZPlikuUzytkownicy(Uzytkownicy &);
-        void zapisDoPlikuUzytkownicy(Uzytkownicy &);
+    void odczytZPlikuUzytkownicy(vector<Uzytkownik> &uzytkownicy, int &liczbaUzytkownikow);
+    void zapisDoPlikuUzytkownicy(vector<Uzytkownik> &uzytkownicy, int &liczbaUzytkownikow);
 };

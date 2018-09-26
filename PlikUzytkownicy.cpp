@@ -8,12 +8,12 @@
 
 using namespace std;
 
-void PlikUzytkownicy::odczytZPlikuUzytkownicy(Uzytkownicy &users){
+void PlikUzytkownicy::odczytZPlikuUzytkownicy(vector<Uzytkownik> &uzytkownicy, int &liczbaUzytkownikow){
     plik.open("uzytkownicy.txt", ios::in);
 
     if(plik.good()) {
         while (getline(plik, linia)) {
-            users.uzytkownicy.push_back(odczytanyUzytkownik);
+            uzytkownicy.push_back(odczytanyUzytkownik);
             znak=' ';
             for(int i=0; znak!='|' || nrDanej!=1; ++i) {
                 znak=linia[i];
@@ -24,21 +24,21 @@ void PlikUzytkownicy::odczytZPlikuUzytkownicy(Uzytkownicy &users){
                     case 1:
                         nrIDstr+=znak;
                         if(linia[i+1]=='|') {
-                            users.uzytkownicy[users.liczbaUzytkownikow].setID(atoi(nrIDstr.c_str()));
+                            uzytkownicy[liczbaUzytkownikow].setID(atoi(nrIDstr.c_str()));
                             nrIDstr="";
                         }
                         break;
                     case 2:
-                        users.uzytkownicy[users.liczbaUzytkownikow].setNazwa(users.uzytkownicy[users.liczbaUzytkownikow].getNazwa()+=znak);
+                        uzytkownicy[liczbaUzytkownikow].setNazwa(uzytkownicy[liczbaUzytkownikow].getNazwa()+=znak);
                         break;
                     case 3:
-                        users.uzytkownicy[users.liczbaUzytkownikow].setHaslo(users.uzytkownicy[users.liczbaUzytkownikow].getHaslo()+=znak);
+                        uzytkownicy[liczbaUzytkownikow].setHaslo(uzytkownicy[liczbaUzytkownikow].getHaslo()+=znak);
                         break;
                     }
                 }
                 if(nrDanej==4) {
                     nrDanej=1;
-                    ++users.liczbaUzytkownikow;
+                    ++liczbaUzytkownikow;
                 }
             }
         }
@@ -46,13 +46,13 @@ void PlikUzytkownicy::odczytZPlikuUzytkownicy(Uzytkownicy &users){
     plik.close();
 }
 
-void PlikUzytkownicy::zapisDoPlikuUzytkownicy(Uzytkownicy &users){
+void PlikUzytkownicy::zapisDoPlikuUzytkownicy(vector<Uzytkownik> &uzytkownicy, int &liczbaUzytkownikow){
     plik.open("uzytkownicy.txt",ios::out);
 
-    for(int i=0; i<users.liczbaUzytkownikow; ++i) {
-        plik<<users.uzytkownicy[i].getID()<<"|";
-        plik<<users.uzytkownicy[i].getNazwa()<<"|";
-        plik<<users.uzytkownicy[i].getHaslo()<<"|"<<endl;
+    for(int i=0; i<liczbaUzytkownikow; ++i) {
+        plik<<uzytkownicy[i].getID()<<"|";
+        plik<<uzytkownicy[i].getNazwa()<<"|";
+        plik<<uzytkownicy[i].getHaslo()<<"|"<<endl;
     }
 
     plik.close();

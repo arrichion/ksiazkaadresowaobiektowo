@@ -1,5 +1,5 @@
 #include <iostream>
-#include "PlikUzytkownicy.h"
+#include "Uzytkownicy.h"
 #include <cstdlib>
 #include <windows.h>
 #include <conio.h>
@@ -11,9 +11,6 @@ using namespace std;
 int main() {
     char wybor;
     Uzytkownicy uzytkownicy;
-    PlikUzytkownicy plikUzytkownicy;
-
-    plikUzytkownicy.odczytZPlikuUzytkownicy(uzytkownicy);//(uzytkownicy.getUzytkownicy(), uzytkownicy.getLiczbaUzytkownikow());
 
     while(!uzytkownicy.getZalogowano()) {
         cout<<"-----KSIAZKA ADRESOWA------"<<endl<<endl;
@@ -66,7 +63,7 @@ int main() {
                     edytujOsobe(osoby, liczbaOsob);
                     break;*/
                 case '7':
-                    uzytkownicy.zmienHaslo(uzytkownicy, plikUzytkownicy);
+                    uzytkownicy.zmienHaslo();
                     break;
                 case '0':
                     uzytkownicy.wylogowanie();

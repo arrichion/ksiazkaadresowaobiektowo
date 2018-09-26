@@ -1,5 +1,4 @@
 #include <iostream>
-#include "Uzytkownicy.h"
 #include <vector>
 
 using namespace std;

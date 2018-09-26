@@ -1,16 +1,15 @@
 #include <iostream>
-#include "Uzytkownik.h"
+#include "PlikUzytkownicy.h"
 #include <vector>
 
 using namespace std;
-
-class PlikUzytkownicy;
 
 class Uzytkownicy {
 private:
     int liczbaUzytkownikow, idZalogowanego;
     bool zalogowano;
     vector<Uzytkownik> uzytkownicy;
+    PlikUzytkownicy plikUzytkownicy;
 
 public:
     Uzytkownicy();
@@ -29,11 +28,7 @@ public:
     void setUzytkownicy(vector<Uzytkownik> nowiUzytkownicy);
 
     void wprowadzDaneUzytkownika();
-    void zmienHaslo(Uzytkownicy &, PlikUzytkownicy &);
+    void zmienHaslo();
     void logowanie();
     void wylogowanie();
-
-    friend class PlikUzytkownicy;
-    friend void odczytZPlikuUzytkownicy(Uzytkownicy &);
-    friend void zapisDoPlikuUzytkownicy(Uzytkownicy &, PlikUzytkownicy &);
 };
