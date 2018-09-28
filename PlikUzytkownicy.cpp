@@ -57,3 +57,13 @@ void PlikUzytkownicy::zapisDoPlikuUzytkownicy(vector<Uzytkownik> &uzytkownicy, i
 
     plik.close();
 }
+
+void PlikUzytkownicy::dodajUzytkownikaDoPlikuUzytkownicy(Uzytkownik dodawanyUzytkownik){
+    plik.open("uzytkownicy.txt",ios::out | ios::app);
+
+    plik<<dodawanyUzytkownik.getID()<<"|";
+    plik<<dodawanyUzytkownik.getNazwa()<<"|";
+    plik<<dodawanyUzytkownik.getHaslo()<<"|"<<endl;
+
+    plik.close();
+}

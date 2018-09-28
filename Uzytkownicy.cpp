@@ -76,14 +76,7 @@ void Uzytkownicy::wprowadzDaneUzytkownika(){
             dodawanyUzytkownik.setID(uzytkownicy[liczbaUzytkownikow-1].getID()+1);
 
         uzytkownicy.push_back(dodawanyUzytkownik);
-        plik.open("uzytkownicy.txt",ios::out | ios::app);
-
-        plik<<uzytkownicy[liczbaUzytkownikow].getID()<<"|";
-        plik<<uzytkownicy[liczbaUzytkownikow].getNazwa()<<"|";
-        plik<<uzytkownicy[liczbaUzytkownikow].getHaslo()<<"|"<<endl;
-
-        plik.close();
-
+        plikUzytkownicy.dodajUzytkownikaDoPlikuUzytkownicy(dodawanyUzytkownik);
         ++liczbaUzytkownikow;
     }
 }

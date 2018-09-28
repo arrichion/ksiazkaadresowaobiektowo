@@ -17,4 +17,5 @@ private:
 public:
     void odczytZPlikuUzytkownicy(vector<Uzytkownik> &uzytkownicy, int &liczbaUzytkownikow);
     void zapisDoPlikuUzytkownicy(vector<Uzytkownik> &uzytkownicy, int &liczbaUzytkownikow);
+    void dodajUzytkownikaDoPlikuUzytkownicy(Uzytkownik dodawanyUzytkownik);
 };
