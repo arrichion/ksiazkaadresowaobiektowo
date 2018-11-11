@@ -44,6 +44,7 @@ void Uzytkownicy::setZalogowano(int noweZalogowano){
 vector<Uzytkownik> Uzytkownicy::getUzytkownicy(){
     return uzytkownicy;
 }
+
 void Uzytkownicy::setUzytkownicy(vector<Uzytkownik> nowiUzytkownicy){
     uzytkownicy=nowiUzytkownicy;
 }
@@ -124,7 +125,6 @@ void Uzytkownicy::logowanie(){
 
 void Uzytkownicy::wylogowanie(){
     zalogowano=false;
-    //osoby.clear();
-    //liczbaOsob=0;
+    //adresaci.clear();
     cout<<"Wylogowano";
 }

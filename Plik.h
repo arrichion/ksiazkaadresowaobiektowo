@@ -1,3 +1,6 @@
+#ifndef PLIK_H
+#define PLIK_H
+
 #include <iostream>
 #include <vector>
 
@@ -13,3 +16,6 @@ public:
 protected:
     bool czyPlikJestPusty();
 };
+
+#endif
+

@@ -8,6 +8,14 @@
 
 using namespace std;
 
+PlikUzytkownicy::PlikUzytkownicy(){
+    nrDanej=1;
+}
+
+PlikUzytkownicy::~PlikUzytkownicy(){
+
+}
+
 void PlikUzytkownicy::odczytZPlikuUzytkownicy(vector<Uzytkownik> &uzytkownicy, int &liczbaUzytkownikow){
     plik.open("uzytkownicy.txt", ios::in);
 

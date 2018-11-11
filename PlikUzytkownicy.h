@@ -11,10 +11,13 @@ private:
     fstream plik;
     string linia, nrIDstr;
     char znak;
-    int nrDanej=1;
+    int nrDanej;
     Uzytkownik odczytanyUzytkownik;
 
 public:
+    PlikUzytkownicy();
+    ~PlikUzytkownicy();
+
     void odczytZPlikuUzytkownicy(vector<Uzytkownik> &uzytkownicy, int &liczbaUzytkownikow);
     void zapisDoPlikuUzytkownicy(vector<Uzytkownik> &uzytkownicy, int &liczbaUzytkownikow);
     void dodajUzytkownikaDoPlikuUzytkownicy(Uzytkownik dodawanyUzytkownik);

@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Uzytkownicy.h"
+#include "Adresaci.h"
 #include <cstdlib>
 #include <windows.h>
 #include <conio.h>
@@ -24,8 +25,8 @@ int main() {
         switch(wybor) {
         case '1':
             uzytkownicy.logowanie();
-            //odczytZPlikuKsiazka(osoby, liczbaOsob, idZalogowanego);
             while(uzytkownicy.getZalogowano()) {
+                Adresaci adresaci(uzytkownicy.getIDZalogowanego());
                 system("cls");
                 cout<<"-----KSIAZKA ADRESOWA------"<<endl<<endl;
                 cout<<"1. Wprowadz dane osoby."<<endl;
@@ -41,27 +42,27 @@ int main() {
                 cout<<endl;
 
                 switch(wybor) {
-                /*case '1':
-                    wprowadzDane(osoby, liczbaOsob, idZalogowanego);
+                case '1':
+                    adresaci.wprowadzDaneAdresata(uzytkownicy.getIDZalogowanego());
                     break;
                 case '2':
-                    wyszukajPoImieniu(osoby, liczbaOsob);
+                    adresaci.wyszukajAdresataPoImieniu();
                     getch();
                     break;
                 case '3':
-                    wyszukajPoNazwisku(osoby, liczbaOsob);
+                    adresaci.wyszukajAdresataPoNazwisku();
                     getch();
                     break;
                 case '4':
-                    wyswietlListeOsob(osoby, liczbaOsob);
+                    adresaci.wyswietlListeAdresatow();
                     getch();
                     break;
                 case '5':
-                    usunOsobe(osoby, liczbaOsob);
+                    adresaci.usunAdresata(uzytkownicy.getIDZalogowanego());
                     break;
                 case '6':
-                    edytujOsobe(osoby, liczbaOsob);
-                    break;*/
+                    adresaci.edytujAdresata(uzytkownicy.getIDZalogowanego());
+                    break;
                 case '7':
                     uzytkownicy.zmienHaslo();
                     break;
